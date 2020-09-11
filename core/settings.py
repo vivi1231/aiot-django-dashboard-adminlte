@@ -72,10 +72,24 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'NAME': 'PERSON',
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'USER': 'postgres',
+    'PASSWORD': 'aitibame',
+    'HOST': 'postgres-aiot.c9nuu9lbcvlx.ap-northeast-1.rds.amazonaws.com',
+    'PORT': '5432',
+    },
+
+    'FACE': {
+    'NAME': 'FACE',
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'USER': 'postgres',
+    'PASSWORD': 'aitibame',
+    'HOST': 'postgres-aiot.c9nuu9lbcvlx.ap-northeast-1.rds.amazonaws.com',
+    'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -101,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 

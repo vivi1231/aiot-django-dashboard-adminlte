@@ -27,7 +27,7 @@ The plugin supports these options:
 		panRange: null   // or [ number, number ] (min, max) or false
 	}
 
-"interactive" enables the built-in drag/click behaviour. If you enable
+"" enables the built-in drag/click behaviour. If you enable
 interactive for pan, then you'll have a basic plot that supports moving
 around; the same for zoom.
 

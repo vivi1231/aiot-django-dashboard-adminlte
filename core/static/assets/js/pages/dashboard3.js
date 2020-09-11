@@ -4,7 +4,7 @@ $(function () {
   'use strict'
 
   var ticksStyle = {
-    fontColor: '#495057',
+    fontColor: '#4037',
     fontStyle: 'bold'
   }
 
@@ -16,7 +16,7 @@ $(function () {
   var salesChart = new Chart($salesChart, {
     type: 'bar',
     data: {
-      labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      labels: ['6', '7', '8', 'SEP', 'OCT', 'NOV', 'DEC'],
       datasets: [
         {
           backgroundColor: '#007bff',

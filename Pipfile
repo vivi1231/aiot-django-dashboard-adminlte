@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+asgiref = "*"
+autopep8 = "*"
+pycodestyle = "*"
+pytz = "*"
+sqlparse = "*"
+dj-database-url = "*"
+python-decouple = "*"
+gunicorn = "*"
+whitenoise = "*"
+psycopg2 = "*"
+Django = "==2.2.10"
+Unipath = "*"
+
+[requires]
+python_version = "3.7"

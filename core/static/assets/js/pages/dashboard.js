@@ -52,7 +52,7 @@ $(function () {
 
   // jvectormap data
   var visitorsData = {
-    US: 398, // USA
+    US: 98, // USA
     SA: 400, // Saudi Arabia
     CA: 1000, // Canada
     DE: 500, // Germany
@@ -92,13 +92,13 @@ $(function () {
   })
 
   // Sparkline charts
-  var sparkline1 = new Sparkline($('#sparkline-1')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
-  var sparkline2 = new Sparkline($('#sparkline-2')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
-  var sparkline3 = new Sparkline($('#sparkline-3')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
+  // var sparkline1 = new Sparkline($('#sparkline-1')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
+  // var sparkline2 = new Sparkline($('#sparkline-2')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
+  // var sparkline3 = new Sparkline($('#sparkline-3')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
 
-  sparkline1.draw([1000, 1200, 920, 927, 931, 1027, 819, 930, 1021])
-  sparkline2.draw([515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921])
-  sparkline3.draw([15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21])
+  // sparkline1.draw([1000, 1200, 920, 927, 931, 1027, 819, 930, 1021])
+  // sparkline2.draw([515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921])
+  // sparkline3.draw([15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21])
 
   // The Calender
   $('#calendar').datetimepicker({
@@ -117,7 +117,7 @@ $(function () {
   // $('#revenue-chart').get(0).getContext('2d');
 
   var salesChartData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
     datasets: [
       {
         label: 'Digital Goods',
@@ -128,19 +128,19 @@ $(function () {
         pointStrokeColor: 'rgba(60,141,188,1)',
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(60,141,188,1)',
-        data: [28, 48, 40, 19, 86, 27, 90]
+        data: [2, 48, 40, 19, 86, 27, 90, 40, 19, 86, 27]
       },
-      {
-        label: 'Electronics',
-        backgroundColor: 'rgba(210, 214, 222, 1)',
-        borderColor: 'rgba(210, 214, 222, 1)',
-        pointRadius: false,
-        pointColor: 'rgba(210, 214, 222, 1)',
-        pointStrokeColor: '#c1c7d1',
-        pointHighlightFill: '#fff',
-        pointHighlightStroke: 'rgba(220,220,220,1)',
-        data: [65, 59, 80, 81, 56, 55, 40]
-      }
+      // {
+      //   label: 'Electronics',
+      //   backgroundColor: 'rgba(210, 214, 222, 1)',
+      //   borderColor: 'rgba(210, 214, 222, 1)',
+      //   pointRadius: false,
+      //   pointColor: 'rgba(210, 214, 222, 1)',
+      //   pointStrokeColor: '#c1c7d1',
+      //   pointHighlightFill: '#fff',
+      //   pointHighlightStroke: 'rgba(220,220,220,1)',
+      //   data: [65, 59, 80, 81, 56, 55, 40]
+      // }
     ]
   }
 
@@ -208,7 +208,7 @@ $(function () {
   // $('#revenue-chart').get(0).getContext('2d');
 
   var salesGraphChartData = {
-    labels: ['2011 Q1', '2011 Q2', '2011 Q3', '2011 Q4', '2012 Q1', '2012 Q2', '2012 Q3', '2012 Q4', '2013 Q1', '2013 Q2'],
+    labels: ['0-9歲', '10-19歲', '20-29歲', '30-39歲', '40-49歲', '50-59歲', '60-69歲', '70歲+'],
     datasets: [
       {
         label: 'Digital Goods',
@@ -221,7 +221,7 @@ $(function () {
         pointHoverRadius: 7,
         pointColor: '#efefef',
         pointBackgroundColor: '#efefef',
-        data: [2666, 2778, 4912, 3767, 6810, 5670, 4820, 15073, 10687, 8432]
+        data: [26, 28, 42, 67, 68, 50, 20, 13, 17, 82]
       }
     ]
   }
@@ -245,7 +245,7 @@ $(function () {
       }],
       yAxes: [{
         ticks: {
-          stepSize: 5000,
+          stepSize: 50,
           fontColor: '#efefef'
         },
         gridLines: {
@@ -265,3 +265,153 @@ $(function () {
     options: salesGraphChartOptions
   })
 })
+
+
+
+
+  var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+  }
+
+  var mode = 'index'
+  var intersect = true
+
+  var $salesChart = $('#sales-chart1')
+  // eslint-disable-next-line no-unused-vars
+  var salesChart = new Chart($salesChart, {
+    type: 'bar',
+    data: {
+      labels: ['0-9歲', '10-19歲', '20-29歲', '30-39歲', '40-49歲', '50-59歲', '60-69歲', '70歲+'],
+      datasets: [
+        {
+          backgroundColor: '#007bff',
+          borderColor: '#007bff',
+          data: [10, 20, 130, 120, 270, 250, 300, 22, 22]
+        },
+        {
+          backgroundColor: '#ced4da',
+          borderColor: '#ced4da',
+          data: [70, 170, 270, 200, 180, 150, 200, 88, 44]
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        mode: mode,
+        intersect: intersect
+      },
+      hover: {
+        mode: mode,
+        intersect: intersect
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display: true,
+            lineWidth: '4px',
+            color: 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks: $.extend({
+            beginAtZero: true,
+
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              if (value >= 10) {
+                value /= 10
+                value += ''
+              }
+
+              return '' + value
+            }
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display: true,
+          gridLines: {
+            display: false
+          },
+          ticks: ticksStyle
+        }]
+      }
+    }
+  })
+
+
+
+
+
+
+  // 換成有提示的線圖
+  // var $visitorsChart = $('#visitors-chart1')
+  // // eslint-disable-next-line no-unused-vars
+  // var visitorsChart = new Chart($visitorsChart, {
+  //   data: {
+  //     labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
+  //     datasets: [{
+  //       type: 'line',
+  //       data: [100, 120, 170, 167, 180, 177, 160],
+  //       backgroundColor: 'transparent',
+  //       borderColor: '#007bff',
+  //       pointBorderColor: '#007bff',
+  //       pointBackgroundColor: '#007bff',
+  //       fill: false
+  //       // pointHoverBackgroundColor: '#007bff',
+  //       // pointHoverBorderColor    : '#007bff'
+  //     },
+  //     {
+  //       type: 'line',
+  //       data: [60, 80, 70, 67, 80, 77, 100],
+  //       backgroundColor: 'tansparent',
+  //       borderColor: '#ced4da',
+  //       pointBorderColor: '#ced4da',
+  //       pointBackgroundColor: '#ced4da',
+  //       fill: false
+  //       // pointHoverBackgroundColor: '#ced4da',
+  //       // pointHoverBorderColor    : '#ced4da'
+  //     }]
+  //   },
+  //   options: {
+  //     maintainAspectRatio: false,
+  //     tooltips: {
+  //       mode: mode,
+  //       intersect: intersect
+  //     },
+  //     hover: {
+  //       mode: mode,
+  //       intersect: intersect
+  //     },
+  //     legend: {
+  //       display: false
+  //     },
+  //     scales: {
+  //       yAxes: [{
+  //         // display: false,
+  //         gridLines: {
+  //           display: true,
+  //           lineWidth: '4px',
+  //           color: 'rgba(0, 0, 0, .2)',
+  //           zeroLineColor: 'transparent'
+  //         },
+  //         ticks: $.extend({
+  //           beginAtZero: true,
+  //           suggestedMax: 200
+  //         }, ticksStyle)
+  //       }],
+  //       xAxes: [{
+  //         display: true,
+  //         gridLines: {
+  //           display: false
+  //         },
+  //         ticks: ticksStyle
+  //       }]
+  //     }
+  //   }
+  // })
+
