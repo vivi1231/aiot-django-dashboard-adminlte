@@ -90,6 +90,18 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#     'NAME': 'Aiot',
+#     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     'USER': 'postgres',
+#     'PASSWORD': 'aitibame',
+#     'HOST': 'postgres-aiot.c9nuu9lbcvlx.ap-northeast-1.rds.amazonaws.com',
+#     'PORT': '5432',
+#     },
+
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -115,13 +127,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Taipei'
+TIME_ZONE = 'asia/taipei'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 #############################################################
 # SRC: https://devcenter.heroku.com/articles/django-assets
