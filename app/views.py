@@ -8,10 +8,29 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
+from app.models import PERSON, FACE
+
+from django.views.generic import TemplateView
+
 
 @login_required(login_url="/login/")
 def index(request):
-    return render(request, "index.html")
+    # results = PERSON.objects.all()
+    queryset = PERSON.objects.all()
+    people_in = sum([p.in_out for p in queryset])
+    people_in_and_out = len([p.in_out for p in queryset])
+    pre_people = people_in - (people_in_and_out - people_in)
+
+    return render(request, "index.html",{'count_in':people_in, 'pre_count':pre_people})
+
+# class ChartView(TemplateView):
+#     template_name = "index.html"
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['qs'] = PERSON.objects.all()
+#         return context
+
 
 @login_required(login_url="/login/")
 def pages(request):
@@ -36,7 +55,6 @@ def pages(request):
 
 
 
-from app.models import PERSON, FACE
 def listone(request): 
     try: 
         unit = PERSON.objects.get(id="1") #讀取一筆資料
@@ -74,3 +92,8 @@ def delete(request,id=None):  #刪除資料
     unit.delete()
     PERSONS = PERSON.objects.all().order_by('-id')
     return render(request, "listall.html", locals())
+
+# @login_required(login_url="/login/")
+def showdata(request):
+    results = PERSON.objects.all()
+    return render(request, 'showdata.html',{'data':results})

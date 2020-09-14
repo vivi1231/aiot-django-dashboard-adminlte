@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <title>Fetch Data from Database</title>
+</head>
+<body>
+        <h1>Django Web Application</h1>
+      <hr/>
+        <table border=1>
+          <tr>
+            <th>ID</th>
+            <th>time</th>
+            <th>in_out</th>
+          </tr>
+          {% for result in data %}
+          <tr>
+            <td>{{result.id}}</td>
+            <td>{{result.time}}</td>
+            <td>{{result.in_out}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+</body>
+</html>
