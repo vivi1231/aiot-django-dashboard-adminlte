@@ -12,6 +12,9 @@ from app.models import PERSON, FACE
 
 from django.views.generic import TemplateView
 
+from .models import Time_opt
+from .filters import Time_optFilter
+
 
 @login_required(login_url="/login/")
 def index(request):
@@ -124,3 +127,18 @@ def delete(request,id=None):  #刪除資料
 def showdata(request):
     results = PERSON.objects.all()
     return render(request, 'showdata.html',{'data':results})
+
+
+def time(request):
+    time_opts = Time_opt.objects.all()
+ 
+    time_optFilter = Time_optFilter(queryset=time_opts)
+ 
+    if request.method == "POST":
+        time_optFilter = Time_optFilter(request.POST, queryset=time_opts)
+ 
+    context = {
+        'time_optFilter': time_optFilter
+    }
+ 
+    return render(request, 'time_opts/widgets.html', context)

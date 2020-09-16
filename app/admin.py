@@ -5,7 +5,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.contrib import admin
 from django.db import models
-
+from .models import Time_opt
 # Register your models here.
 from app.models import PERSON, FACE
 # 第三種方式，加入 ModelAdmin 類別，定義顯示欄位、欄位過濾資料、搜尋和排序
@@ -25,3 +25,11 @@ class FACEAdmin(admin.ModelAdmin):
  
 admin.site.register(PERSON,PERSONAdmin)
 admin.site.register(FACE,FACEAdmin)
+
+
+
+
+class Time_optAdmin(admin.ModelAdmin):
+    list_display = ('date', 'hour')
+    
+admin.site.register(Time_opt, Time_optAdmin)
