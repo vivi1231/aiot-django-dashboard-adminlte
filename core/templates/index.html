@@ -205,248 +205,126 @@ $(document).ready(function(){
               <!-- <canvas class="chart" id="visitors-chart1" style="min-height: 140px; height: 140px; max-height: 140px; max-width: 100%;"></canvas> -->
               </div><!-- /.card-header -->
 
-              
-            <div class="row">
-            
-                <div class="col-md-6">
+
+              <div class="row">
+                <div class="col-md-12">
                   <script src="https://code.highcharts.com/highcharts.js"></script>
                   <script src="https://code.highcharts.com/modules/exporting.js"></script>
                   <script src="https://code.highcharts.com/modules/export-data.js"></script>
                   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
+                  
                   <figure class="highcharts-figure">
-                      <div id="container0"></div>
-                      <p class="highcharts-description">
-                          Chart showing 
-                      </p>
+                    <div id="container"></div>
+                    <!-- <p class="highcharts-description">
+                      This demo shows a smoothed area chart with an x-axis plot band
+                      highlighting an area of interest at the last two points. Plot bands
+                      and plot lines are commonly used to draw attention to certain areas or
+                      thresholds.
+                    </p> -->
                   </figure>
 
-
                   <style>
-                    #container0 {
-                    height: 400px; 
-                        }
+                    #container {
+                      height: 400px; 
+                    }
 
                     .highcharts-figure, .highcharts-data-table table {
-                        min-width: 310px; 
-                        max-width: 800px;
-                        margin: 1em auto;
+                      min-width: 310px; 
+                      max-width: 800px;
+                      margin: 1em auto;
                     }
 
                     .highcharts-data-table table {
-                        font-family: Verdana, sans-serif;
-                        border-collapse: collapse;
-                        border: 1px solid #EBEBEB;
-                        margin: 10px auto;
-                        text-align: center;
-                        width: 100%;
-                        max-width: 500px;
+                      font-family: Verdana, sans-serif;
+                      border-collapse: collapse;
+                      border: 1px solid #EBEBEB;
+                      margin: 10px auto;
+                      text-align: center;
+                      width: 100%;
+                      max-width: 500px;
                     }
                     .highcharts-data-table caption {
-                        padding: 1em 0;
-                        font-size: 1.2em;
-                        color: #555;
+                      padding: 1em 0;
+                      font-size: 1.2em;
+                      color: #555;
                     }
                     .highcharts-data-table th {
                       font-weight: 600;
-                        padding: 0.5em;
+                      padding: 0.5em;
                     }
                     .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-                        padding: 0.5em;
+                      padding: 0.5em;
                     }
                     .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-                        background: #f8f8f8;
+                      background: #f8f8f8;
                     }
                     .highcharts-data-table tr:hover {
-                        background: #f1f7ff;
+                      background: #f1f7ff;
                     }
-
-                  </style>
-
+                  </style>    
+                  
                   <script>
-                    Highcharts.chart('container0', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Stacked column chart'
-                    },
-                    xAxis: {
-                        categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total fruit consumption'
-                        },
-                        stackLabels: {
-                            enabled: true,
-                            style: {
-                                fontWeight: 'bold',
-                                color: ( // theme
-                                    Highcharts.defaultOptions.title.style &&
-                                    Highcharts.defaultOptions.title.style.color
-                                ) || 'gray'
-                            }
-                        }
-                    },
-                    legend: {
-                        align: 'right',
-                        x: -30,
+                    Highcharts.chart('container', {
+                      chart: {
+                        type: 'areaspline'
+                      },
+                      title: {
+                        text: 'Average fruit consumption during one week'
+                      },
+                      legend: {
+                        layout: 'vertical',
+                        align: 'left',
                         verticalAlign: 'top',
-                        y: 25,
+                        x: 150,
+                        y: 100,
                         floating: true,
-                        backgroundColor:
-                            Highcharts.defaultOptions.legend.backgroundColor || 'white',
-                        borderColor: '#CCC',
                         borderWidth: 1,
-                        shadow: false
-                    },
-                    tooltip: {
-                        headerFormat: '<b>{point.x}</b><br/>',
-                        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-                    },
-                    plotOptions: {
-                        column: {
-                            stacking: 'normal',
-                            dataLabels: {
-                                enabled: true
-                            }
+                        backgroundColor:
+                          Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+                      },
+                      xAxis: {
+                        type: 'datetime'
+                      },
+
+                      plotOptions: {
+                        series: {
+                            pointStart: Date.UTC(2010, 0, 1),
+                            pointInterval: 24 * 3600 * 1000 // one day
                         }
-                    },
-                    series: [{
+                      },
+                      yAxis: {
+                        title: {
+                          text: 'Fruit units'
+                        }
+                      },
+                      tooltip: {
+                        shared: true,
+                        valueSuffix: ' units'
+                      },
+                      credits: {
+                        enabled: false
+                      },
+                      plotOptions: {
+                        areaspline: {
+                          fillOpacity: 0.5
+                        }
+                      },
+                      series: [{
                         name: 'John',
-                        data: [5, 3, 4, 7, 2]
-                    }, {
+                        data: [3, 4, 3, 5, 4, 10, 12]
+                      }, {
                         name: 'Jane',
-                        data: [2, 2, 3, 2, 1]
-                    }, {
-                        name: 'Joe',
-                        data: [3, 4, 4, 2, 5]
-                    }]
-                });
+                        data: [1, 3, 4, 3, 3, 5, 4]
+                      }]
+                    });
                   </script>
-              </div>
-
-              <div class="col-md-6">
-                <script src="https://code.highcharts.com/highcharts.js"></script>
-                <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-                <figure class="highcharts-figure">
-                    <div id="container1"></div>
-                    <p class="highcharts-description">
-                        A demo showing a stacked area chart, also sometimes referred to as a
-                        mountain chart. In a stacked chart, the data series values are added
-                        together to make up a total.
-                    </p>
-                </figure>
 
 
-                  <style>
-                    #container1 {
-                        height: 400px; 
-                    }
 
-                    .highcharts-figure, .highcharts-data-table table {
-                        min-width: 310px; 
-                        max-width: 800px;
-                        margin: 1em auto;
-                    }
 
-                    .highcharts-data-table table {
-                        font-family: Verdana, sans-serif;
-                        border-collapse: collapse;
-                        border: 1px solid #EBEBEB;
-                        margin: 10px auto;
-                        text-align: center;
-                        width: 100%;
-                        max-width: 500px;
-                    }
-                    .highcharts-data-table caption {
-                        padding: 1em 0;
-                        font-size: 1.2em;
-                        color: #555;
-                    }
-                    .highcharts-data-table th {
-                      font-weight: 600;
-                        padding: 0.5em;
-                    }
-                    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-                        padding: 0.5em;
-                    }
-                    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-                        background: #f8f8f8;
-                    }
-                    .highcharts-data-table tr:hover {
-                        background: #f1f7ff;
-                    }
-                  </style>
+                </div>
 
-                  <script>
-                    Highcharts.chart('container1', {
-                    chart: {
-                        type: 'area'
-                    },
-                    title: {
-                        text: 'Historic and Estimated Worldwide Population Growth by Region'
-                    },
-                    subtitle: {
-                        text: 'Source: Wikipedia.org'
-                    },
-                    xAxis: {
-                        categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
-                        tickmarkPlacement: 'on',
-                        title: {
-                            enabled: false
-                        }
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Billions'
-                        },
-                        labels: {
-                            formatter: function () {
-                                return this.value / 1000;
-                            }
-                        }
-                    },
-                    tooltip: {
-                        split: true,
-                        valueSuffix: ' millions'
-                    },
-                    plotOptions: {
-                        area: {
-                            stacking: 'normal',
-                            lineColor: '#666666',
-                            lineWidth: 1,
-                            marker: {
-                                lineWidth: 1,
-                                lineColor: '#666666'
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Asia',
-                        data: [502, 635, 809, 947, 1402, 3634, 5268]
-                    }, {
-                        name: 'Africa',
-                        data: [106, 107, 111, 133, 221, 767, 1766]
-                    }, {
-                        name: 'Europe',
-                        data: [163, 203, 276, 408, 547, 729, 628]
-                    }, {
-                        name: 'America',
-                        data: [18, 31, 54, 156, 339, 818, 1201]
-                    }, {
-                        name: 'Oceania',
-                        data: [2, 2, 2, 6, 13, 30, 46]
-                    }]
-                });
 
-                  </script>
-              </div>
 
               <!-- <div class="col-md-6">
                 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -985,6 +863,252 @@ $(document).ready(function(){
 
 
             <div class="row">
+
+
+              <!-- edited -->
+              <div class="col-md-6">
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                <figure class="highcharts-figure">
+                    <div id="container5"></div>
+                    <!-- <p class="highcharts-description">
+                        Chart showing 
+                    </p> -->
+                </figure>
+
+
+                <style>
+                  #container5 {
+                  height: 400px; 
+                      }
+
+                  .highcharts-figure, .highcharts-data-table table {
+                      min-width: 310px; 
+                      max-width: 800px;
+                      margin: 1em auto;
+                  }
+
+                  .highcharts-data-table table {
+                      font-family: Verdana, sans-serif;
+                      border-collapse: collapse;
+                      border: 1px solid #EBEBEB;
+                      margin: 10px auto;
+                      text-align: center;
+                      width: 100%;
+                      max-width: 500px;
+                  }
+                  .highcharts-data-table caption {
+                      padding: 1em 0;
+                      font-size: 1.2em;
+                      color: #555;
+                  }
+                  .highcharts-data-table th {
+                    font-weight: 600;
+                      padding: 0.5em;
+                  }
+                  .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+                      padding: 0.5em;
+                  }
+                  .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+                      background: #f8f8f8;
+                  }
+                  .highcharts-data-table tr:hover {
+                      background: #f1f7ff;
+                  }
+
+                </style>
+
+                <script>
+                  Highcharts.chart('container5', {
+                  chart: {
+                      type: 'column'
+                  },
+                  title: {
+                      text: '性別年齡分析'
+                  },
+                  xAxis: {
+                      categories: ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79']
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: 'Number of People'
+                      },
+                      stackLabels: {
+                          enabled: true,
+                          style: {
+                              fontWeight: 'bold',
+                              color: ( // theme
+                                  Highcharts.defaultOptions.title.style &&
+                                  Highcharts.defaultOptions.title.style.color
+                              ) || 'gray'
+                          }
+                      }
+                  },
+                  legend: {
+                      align: 'right',
+                      x: -30,
+                      verticalAlign: 'top',
+                      y: 25,
+                      floating: true,
+                      backgroundColor:
+                          Highcharts.defaultOptions.legend.backgroundColor || 'white',
+                      borderColor: '#CCC',
+                      borderWidth: 1,
+                      shadow: false
+                  },
+                  tooltip: {
+                      headerFormat: '<b>{point.x}</b><br/>',
+                      pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                  },
+                  plotOptions: {
+                      column: {
+                          stacking: 'normal',
+                          dataLabels: {
+                              enabled: true
+                          }
+                      }
+                  },
+                  series: [{
+                      name: 'Male',
+                      data: [{{age_M_0}}, {{age_M_10}},{{age_M_20}}, {{age_M_30}}, {{age_M_40}}, {{age_M_50}}, {{age_M_60}}, {{age_M_70}}]
+                  },{
+                      name: 'Female',
+                      data: [{{age_F_0}}, {{age_F_10}}, {{age_F_20}}, {{age_F_30}}, {{age_F_40}}, {{age_F_50}}, {{age_F_60}}, {{age_F_70}}]
+                  }]
+              });
+                </script>
+            </div>
+
+            
+
+
+              <div class="col-md-6">
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                <figure class="highcharts-figure">
+                    <div id="container6"></div>
+                    <!-- <p class="highcharts-description">
+                        A demo showing a stacked area chart, also sometimes referred to as a
+                        mountain chart. In a stacked chart, the data series values are added
+                        together to make up a total.
+                    </p> -->
+                </figure>
+
+
+                  <style>
+                    #container6 {
+                        height: 400px; 
+                    }
+
+                    .highcharts-figure, .highcharts-data-table table {
+                        min-width: 310px; 
+                        max-width: 800px;
+                        margin: 1em auto;
+                    }
+
+                    .highcharts-data-table table {
+                        font-family: Verdana, sans-serif;
+                        border-collapse: collapse;
+                        border: 1px solid #EBEBEB;
+                        margin: 10px auto;
+                        text-align: center;
+                        width: 100%;
+                        max-width: 500px;
+                    }
+                    .highcharts-data-table caption {
+                        padding: 1em 0;
+                        font-size: 1.2em;
+                        color: #555;
+                    }
+                    .highcharts-data-table th {
+                      font-weight: 600;
+                        padding: 0.5em;
+                    }
+                    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+                        padding: 0.5em;
+                    }
+                    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+                        background: #f8f8f8;
+                    }
+                    .highcharts-data-table tr:hover {
+                        background: #f1f7ff;
+                    }
+                  </style>
+
+                  <script>
+                    Highcharts.chart('container6', {
+                    chart: {
+                        type: 'area'
+                    },
+                    title: {
+                        text: 'Historic and Estimated Worldwide Population Growth by Region'
+                    },
+                    subtitle: {
+                        text: 'Source: Wikipedia.org'
+                    },
+                    xAxis: {
+                        categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+                        tickmarkPlacement: 'on',
+                        title: {
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Billions'
+                        },
+                        labels: {
+                            formatter: function () {
+                                return this.value / 1000;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        split: true,
+                        valueSuffix: ' millions'
+                    },
+                    plotOptions: {
+                        area: {
+                            stacking: 'normal',
+                            lineColor: '#666666',
+                            lineWidth: 1,
+                            marker: {
+                                lineWidth: 1,
+                                lineColor: '#666666'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Asia',
+                        data: [502, 635, 809, 947, 1402, 3634, 5268]
+                    }, {
+                        name: 'Africa',
+                        data: [106, 107, 111, 133, 221, 767, 1766]
+                    }, {
+                        name: 'Europe',
+                        data: [163, 203, 276, 408, 547, 729, 628]
+                    }, {
+                        name: 'America',
+                        data: [18, 31, 54, 156, 339, 818, 1201]
+                    }, {
+                        name: 'Oceania',
+                        data: [2, 2, 2, 6, 13, 30, 46]
+                    }]
+                });
+
+                  </script>
+              </div>
+
+
+
+
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header border-0">

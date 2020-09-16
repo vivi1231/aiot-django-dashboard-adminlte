@@ -16,12 +16,39 @@ from django.views.generic import TemplateView
 @login_required(login_url="/login/")
 def index(request):
     # results = PERSON.objects.all()
-    queryset = PERSON.objects.all()
-    people_in = sum([p.in_out for p in queryset])
-    people_in_and_out = len([p.in_out for p in queryset])
+    queryset_P = PERSON.objects.all()
+    queryset_F = FACE.objects.all()
+    people_in = sum([p.in_out for p in queryset_P])
+    people_in_and_out = len([p.in_out for p in queryset_P])
     pre_people = people_in - (people_in_and_out - people_in)
+    age = [p.age for p in queryset_F]
+    gender = [p.gender for p in queryset_F]
 
-    return render(request, "index.html",{'count_in':people_in, 'pre_count':pre_people})
+    # Count number of male and age
+    age_M_0 = len(FACE.objects.filter(age='0', gender=True))
+    age_M_10 = len(FACE.objects.filter(age='1', gender=True))
+    age_M_20 = len(FACE.objects.filter(age='2', gender=True))
+    age_M_30 = len(FACE.objects.filter(age='3', gender=True))
+    age_M_40 = len(FACE.objects.filter(age='4', gender=True))
+    age_M_50 = len(FACE.objects.filter(age='5', gender=True))
+    age_M_60 = len(FACE.objects.filter(age='6', gender=True))
+    age_M_70 = len(FACE.objects.filter(age='7', gender=True))
+
+    # Count number of female and age
+    age_F_0 = len(FACE.objects.filter(age='0', gender=False))
+    age_F_10 = len(FACE.objects.filter(age='1', gender=False))
+    age_F_20 = len(FACE.objects.filter(age='2', gender=False))
+    age_F_30 = len(FACE.objects.filter(age='3', gender=False))
+    age_F_40 = len(FACE.objects.filter(age='4', gender=False))
+    age_F_50 = len(FACE.objects.filter(age='5', gender=False))
+    age_F_60 = len(FACE.objects.filter(age='6', gender=False))
+    age_F_70 = len(FACE.objects.filter(age='7', gender=False))
+
+
+
+    return render(request, "index.html",{'count_in':people_in, 'pre_count':pre_people, 'age':age, 'gender':gender, 
+    'age_M_0':age_M_0, 'age_M_10':age_M_10, 'age_M_20':age_M_20, 'age_M_30':age_M_30, 'age_M_40':age_M_40, 'age_M_50':age_M_50, 'age_M_60':age_M_60, 'age_M_70':age_M_70, 
+    'age_F_0':age_F_0, 'age_F_10':age_F_10, 'age_F_20':age_F_20, 'age_F_30':age_F_30, 'age_F_40':age_F_40, 'age_F_50':age_F_50, 'age_F_60':age_F_60, 'age_F_70':age_F_70,})
 
 # class ChartView(TemplateView):
 #     template_name = "index.html"
