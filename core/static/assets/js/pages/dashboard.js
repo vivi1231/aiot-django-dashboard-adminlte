@@ -360,7 +360,7 @@ $(function () {
   var intersect = true
 
 
-  var $salesChart = $('#sales-chart')
+  var $salesChart = $('#sales-chart1')
   // eslint-disable-next-line no-unused-vars
   var salesChart = new Chart($salesChart, {
     type: 'bar',

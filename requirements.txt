@@ -13,3 +13,4 @@ psycopg2
 pandas
 sqlalchemy
 plotly
+django_filter

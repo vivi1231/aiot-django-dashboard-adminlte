@@ -40,6 +40,30 @@
       </div><!-- /.container-fluid -->
     </section>
 
+
+
+    <form method='POST'>
+      {% csrf_token %}
+      請輸入日期：{{ time_optFilter.form.date }}
+      請選取時間：{{ time_optFilter.form.hour }}
+      <input type="submit" class="btn btn-primary" value="查詢" />
+    </form>
+      <br />
+    <table class="table">
+      <thead>
+          <th>日期</th>
+          <th>時間</th>
+      </thead>
+      <tbody>
+          {% for time_opt in time_optFilter.qs %}
+          <tr>
+              <td>{{ time_opt.date }}</td>
+              <td>{{ time_opt.get_hour_display }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">

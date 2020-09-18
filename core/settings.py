@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',  # Enable the inner app 
+    'app',
+    'django_filters',  # Enable the inner app 
     # 'simple_history',
 ]
 
@@ -75,16 +76,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-    'NAME': 'PERSON',
+    'NAME': 'aioy',
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'USER': 'postgres',
-    'PASSWORD': 'aitibame',
-    'HOST': 'postgres-aiot.c9nuu9lbcvlx.ap-northeast-1.rds.amazonaws.com',
+    'PASSWORD': 'hs699632',
+    'HOST': 'database-1.cwuz2ogsrp24.ap-northeast-1.rds.amazonaws.com',
     'PORT': '5432',
     },
 
     'FACE': {
-    'NAME': 'FACE',
+    'NAME': 'PERSON',
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'USER': 'postgres',
     'PASSWORD': 'aitibame',
