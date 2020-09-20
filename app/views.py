@@ -129,18 +129,32 @@ def showdata(request):
 
 
 def time(request):
-    time_opts = Time_opt.objects.all()
- 
-    time_optFilter = Time_optFilter(queryset=time_opts)
- 
+    time_opts = Time_opt.objects.all() 
+    time_optFilter = Time_optFilter(queryset=time_opts) 
     if request.method == "POST":
         time_optFilter = Time_optFilter(request.POST, queryset=time_opts)
- 
     context = {
         'time_optFilter': time_optFilter
     }
- 
     return render(request, 'time_opts/widgets.html', context)
+
+
+def index(request):
+	# time_peoplemove = peoplemove.objects.filter(date_created__lte="2020-09-14 00:01:47+00",
+                                            #  date_created__gte="2020-09-12 23:59:47+00")
+    total_getin = ericapp_peoplemove.objects.filter(getin="10").count()
+    total_getout =  ericapp_peoplemove.objects.filter(out="10").count()
+    gender_0 =  ericapp_agender.objects.filter(gender="0").count()
+    gender_1 =  ericapp_agender.objects.filter(gender="1").count()
+    # products = agender.objects.all()
+    context = {'total_getin': total_getin, 'total_getout': total_getout, 'gender_0':gender_0,
+               'gender_1':gender_1
+    }
+    
+	# context = {}
+    return render(request, 'index.html', context)
+
+
 
 
 
